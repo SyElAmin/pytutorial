@@ -1,20 +1,15 @@
 # What is python used for?
 
 """
-
 Web Development
-
 Data Science
 Machine Learning
 Artificial Intelligence
-
 Web Scraping
-
 Automation (Dev Ops & General tasks)
-
 """
 
-from logging import StringTemplateStyle
+from logging import StringTemplateStyle, raiseExceptions
 from operator import truediv
 print("\nPart 1")
 print("\nIn this tutorial, I learned about: \n\n * Strings, \n * Integers & Floats, \n * String Concatenation, \n * Defining variables and Defining functions! \n\nI coded out formulas to: \n\n * Calculate the number of minutes & number of seconds in a static number of days, \n * Calculate the number of minutes & number of seconds in any day using user input, \n * and Defined formulas as functions! ")
@@ -35,7 +30,7 @@ print("\nI coded out improvements to: \n * Add a constraint to my conversion cal
 # print(3)
 
 # Arithmetic Operators
-minutes_for_20_days = (20 * 24 * 60)
+# minutes_for_20_days = (20 * 24 * 60)
 
 # How do we combine text and calculation? string concatenation str + variable/calc + str
 # concatenation without using format
@@ -44,7 +39,7 @@ minutes_for_20_days = (20 * 24 * 60)
 # print(f"20 days are {minutes_for_20_days} minutes")
 
 # This is a variable representing a days to minutes conversion and the goal is to have an input driven version of this at the end.
-minutes_for_35_days = (35 * 24 * 60)
+# minutes_for_35_days = (35 * 24 * 60)
 
 # Formatting a variable.
 # print(f"35 days are {minutes_for_35_days} minutes")
@@ -56,14 +51,13 @@ minutes_for_35_days = (35 * 24 * 60)
 # print(f"110 days are {minutes_for_110_days} minutes")
 
 # Creating a variable to accept input.
-days_to_convert = input(
-    "Enter the number of days you want to convert: ")
+# Defining function to resolve string conversion error
+
 
 # Print statement using variables and commas to concatenate.
 # print(days_to_convert, "days are", int(days_to_convert) * 24 * 60, "minutes.")
 
 # Variable created using input variable and formula concatenation.
-minute_conversion = float(days_to_convert) * 24 * 60
 
 
 # Perfected operation without formatting.
@@ -74,9 +68,7 @@ minute_conversion = float(days_to_convert) * 24 * 60
 
 # its_boolean = (f"{days_to_convert.isdigit()},  {days_to_convert.isalpha()}")
 # print(its_boolean)
-
 # Days to seconds as an input variable.
-second_conversion = float(days_to_convert) * 24 * 60 * 60
 
 
 # Using formatting to code similar to conversation.
@@ -85,38 +77,26 @@ second_conversion = float(days_to_convert) * 24 * 60 * 60
 
 # creating a function to convert days into minutes /added if else statement using comparison model...
 
-def days_to_minutes(days_to_convert):
-    if float(days_to_convert) > 0:  # this is an example of a conditional
-        return(f"{days_to_convert} days are {minute_conversion} minutes")
-    elif float(days_to_convert) == 0:
-        return "You entered a 0, please enter a valid positive number"
-    else:
-        return "You entered a negative number, please use positive integers only for min conversions."
+def days_to_hms():
+    while True:
+        try:
+            days_to_convert = float(
+                input("Enter the number of days you want to convert: "))
+            hour_conversion = days_to_convert * 24
+            minute_conversion = days_to_convert * 24 * 60
+            second_conversion = days_to_convert * 24 * 60 * 60
+            print(f"{days_to_convert} days are equivalent to {hour_conversion} hours, {minute_conversion} minutes and {second_conversion} seconds!")
+            break
+        except ValueError:
+            print("Enter any positive number to convert days to minutes.")
+    if days_to_convert <= 0:
+        raise Exception("Enter a positive value greater than 0.")
+
+
+days_to_hms()
 
 
 # creating a function to convert days into seconds must convert user input from string to integer in both functions to work
-def days_to_seconds(days_to_convert):
-    if float(days_to_convert) > 0:
-        return(f"{days_to_convert} days are {second_conversion} seconds")
-    elif float(days_to_convert) == 0:
-        return "You entered a 0, please enter a valid positive number"
-    else:
-        return "Invalid number, please use positive integers only for sec conversions."
-
-
-days_to_minutes(days_to_convert)
-days_to_seconds(days_to_convert)
-
-calculated_minutes = days_to_minutes(days_to_convert)
-calculated_seconds = days_to_seconds(days_to_convert)
-
-
-if days_to_convert.isdigit():
-    user_input = float(days_to_convert)
-    conversions = days_to_minutes(user_input), days_to_seconds(user_input)
-    print(conversions)
-else:
-    print("What do you think you're doing? Your input should be a number instead.")
 
 
 # **************************************************************** #

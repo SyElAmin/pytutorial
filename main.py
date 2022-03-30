@@ -78,23 +78,24 @@ print("\nI coded out improvements to: \n * Add a constraint to my conversion cal
 # creating a function to convert days into minutes /added if else statement using comparison model...
 
 def days_to_hms():
-    while True:
-        try:
-            days_to_convert = float(
-                input("Enter the number of days you want to convert: "))
-            hour_conversion = days_to_convert * 24
-            minute_conversion = days_to_convert * 24 * 60
-            second_conversion = days_to_convert * 24 * 60 * 60
-            print(f"{days_to_convert} days are equivalent to {hour_conversion} hours, {minute_conversion} minutes and {second_conversion} seconds!")
-            break
-        except ValueError:
-            print("Enter any positive number to convert days to minutes.")
+    try:
+        days_to_convert = float(
+            input("Enter the number of days you want to convert:\n "))
+        hour_conversion = days_to_convert * 24
+        minute_conversion = days_to_convert * 24 * 60
+        second_conversion = days_to_convert * 24 * 60 * 60
+        print(f"{days_to_convert} days are equivalent to {hour_conversion} hours, {minute_conversion} minutes and {second_conversion} seconds!")
+    except ValueError:
+        print("Enter any positive number to convert days to minutes.")
     if days_to_convert <= 0:
         raise Exception("Enter a positive value greater than 0.")
 
 
 days_to_hms()
 
+
+while True:
+    days_to_hms()
 
 # creating a function to convert days into seconds must convert user input from string to integer in both functions to work
 
